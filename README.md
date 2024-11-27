@@ -20,7 +20,7 @@ source .venv/bin/activate # On macOS/Linux
 pip install -r requirements.txt
 ```
 
-3. Create .env file for environment variables
+3. Create .env file for environment variables (place in /broke-bank/)
 ```env
 FLASK_ENV=development
 FLASK_APP=main.py
