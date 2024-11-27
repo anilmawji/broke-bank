@@ -28,7 +28,7 @@ MYSQL_USER=username_here
 MYSQL_PASSWORD=password_here
 ```
 
-3. Start server (local deployment)
+4. Start server (local deployment)
 ```shell
 flask run
 ```
