@@ -23,7 +23,6 @@ CREATE TABLE transactions (
     transaction_date DATETIME NOT NULL,
     withdrawn_amount DECIMAL(15, 2) DEFAULT 0,
     deposited_amount DECIMAL(15, 2) DEFAULT 0,
-    transaction_description VARCHAR(50),
     account_name VARCHAR(50),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -34,14 +33,14 @@ VALUES
     ('Jane Smith', 'janesmith', 'dogs111', '456 Maple Rd, Montreal, QC, H3A 2A5', '1990-08-25', '514-987-6543', 'janesmith@email.com', '223456789'),
     ('Bob Johnson', 'bob.johnson', 'qwerty123', '789 Birch St, Vancouver, BC, V6B 1A9', '1982-11-10', '604-555-5555', 'bobjohnson@email.com', '323456789');
     
-INSERT INTO transactions (user_id, transaction_date, withdrawn_amount, deposited_amount, transaction_description, account_name) 
+INSERT INTO transactions (user_id, transaction_date, withdrawn_amount, deposited_amount, account_name) 
 VALUES
-    ('1', '2024-10-24', '304.52', '0', '', 'chequing'),
-    ('1', '2024-11-25', '0', '234', '', 'chequing'),
-    ('1', '2024-09-13', '100', '0', '', 'chequing'),
-    ('2', '2024-08-12', '0', '2000', '', 'chequing'),
-    ('2', '2024-10-04', '304.52', '0', '', 'chequing'),
-    ('2', '2024-11-27', '304.52', '0', '', 'chequing');
+    ('1', '2024-10-24', '304.52', '0', 'chequing'),
+    ('1', '2024-11-25', '0', '234', 'chequing'),
+    ('1', '2024-09-13', '100', '0', 'chequing'),
+    ('2', '2024-08-12', '0', '2000', 'chequing'),
+    ('2', '2024-10-04', '304.52', '0', 'chequing'),
+    ('2', '2024-11-27', '304.52', '0', 'chequing');
 
 -- SELECT * FROM users;
 SELECT * FROM transactions;

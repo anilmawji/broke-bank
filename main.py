@@ -23,6 +23,7 @@ def try_connect_db():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        # Retrieve the username and password from the form submission
         username = request.form['username']
         password = request.form['password']
 
@@ -45,20 +46,31 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/transactions')
+@app.route('/transactions', methods=['GET', 'POST'])
 def transactions():
+    # If the user is not logged in, redirect to login page
     if 'user' not in session:
-        # User is not logged in, redirect to login page
         return redirect(url_for('index'))
     
     user = session['user']
+    reference_number = None
+
+    if request.method == 'POST':
+        # Retrieve the ref numver from the form submission
+        reference_number = request.form['reference_number'].strip()
 
     database = try_connect_db()
     if database is None:
         return '<h1>Loading...</h1>'
     
     cursor = database.cursor()
-    cursor.execute(f"SELECT * FROM transactions WHERE user_id = '{user['user_id']}'")
+    query = f"SELECT * FROM transactions WHERE user_id = '{user['user_id']}'"
+
+    # If a reference number was provided, modify the query to include a condition for the ref number
+    if reference_number:
+        query += f" AND reference_number = '{reference_number}'"
+
+    cursor.execute(query)
     transactions = cursor.fetchall()
 
     return render_template('transactions.html', transactions=transactions, full_name=user['full_name'])
@@ -66,7 +78,7 @@ def transactions():
 
 @app.route('/logout')
 def logout():
-    # Remove the user information from the session
+    # Purge the user information from the session
     session.pop('user', None)
     return redirect(url_for('index'))
 
