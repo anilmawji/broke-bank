@@ -12,7 +12,7 @@ git clone https://github.com/anilmawji/broke-bank.git; cd broke-bank
    
 macOS/Linux:
 ```shell
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv && source .venv/Scripts/activate
 ```
 Windows:
 ```shell
