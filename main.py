@@ -58,7 +58,7 @@ def transactions():
 
     if request.method == 'POST':
         # Retrieve the ref numver from the form submission
-        reference_number = request.form['reference_number'].strip()
+        reference_number = request.form['reference_number']
 
     database = try_connect_db()
     if database is None:

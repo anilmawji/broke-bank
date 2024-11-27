@@ -1,7 +1,7 @@
 USE banking_platform;
 
--- DROP TABLE transactions;
--- DROP TABLE users;
+DROP TABLE transactions;
+DROP TABLE users;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,4 +43,9 @@ VALUES
     ('2', '2024-11-27', '304.52', '0', 'chequing');
 
 -- SELECT * FROM users;
-SELECT * FROM transactions;
+-- SELECT * FROM users;
+-- SELECT * FROM transactions;
+
+SELECT date(transaction_date), reference_number, deposited_amount, withdrawn_amount, account_name
+FROM transactions WHERE user_id = '1' AND reference_number = '3'
+union select date(transaction_date), reference_number, null, null, null from transactions;
