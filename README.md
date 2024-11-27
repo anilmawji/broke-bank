@@ -1,5 +1,5 @@
 # broke-bank
-SQL injection demonstraction built with Flask and MySQL.
+Mock banking application built with Flask and MySQL. Use this to practice SQL injection!
 
 # Setup
 
