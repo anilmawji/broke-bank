@@ -28,11 +28,12 @@ pip install -r requirements.txt
 ```
 
 ## 5. Create .env file for environment variables (place in /broke-bank/)
+Make sure to replace `myusername` and `mypassword` with your MySQL credentials.
 ```env
 FLASK_ENV=development
 FLASK_APP=main.py
-MYSQL_USER=username_here
-MYSQL_PASSWORD=password_here
+MYSQL_USER=myusername
+MYSQL_PASSWORD=mypassword
 ```
 
 ## 6. Start server (local deployment)
