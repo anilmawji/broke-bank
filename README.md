@@ -3,12 +3,15 @@ SQL injection demonstraction built with Flask and MySQL.
 
 # Setup
 
-## 1. Clone repository
+## 1. Install MySQL
+https://dev.mysql.com/downloads/installer/
+
+## 2. Clone repository
 ```shell
 git clone https://github.com/anilmawji/broke-bank.git; cd broke-bank
 ```
 
-## 2. Create and activate virtual environment (optional, recommended)
+## 3. Create and activate virtual environment (optional, recommended)
    
 macOS/Linux:
 ```shell
@@ -19,12 +22,12 @@ Windows:
 python -m venv .venv && .venv\Scripts\activate
 ```
 
-## 3. Install dependencies
+## 4. Install dependencies
 ```shell
 pip install -r requirements.txt
 ```
 
-## 4. Create .env file for environment variables (place in /broke-bank/)
+## 5. Create .env file for environment variables (place in /broke-bank/)
 ```env
 FLASK_ENV=development
 FLASK_APP=main.py
@@ -32,7 +35,7 @@ MYSQL_USER=username_here
 MYSQL_PASSWORD=password_here
 ```
 
-## 5. Start server (local deployment)
+## 6. Start server (local deployment)
 ```shell
 flask run
 ```
