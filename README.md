@@ -1,5 +1,5 @@
 # broke-bank
-SQL injection demo
+SQL injection demonstraction.
 
 # Setup
 
