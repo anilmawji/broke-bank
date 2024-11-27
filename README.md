@@ -1,5 +1,5 @@
 # broke-bank
-SQL injection demonstraction.
+SQL injection demonstraction built with Flask and MySQL.
 
 # Setup
 
