@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 from dotenv import load_dotenv
 import os
@@ -21,7 +21,6 @@ def try_connect_db():
 
 
 @app.route('/', methods=['GET', 'POST'])
-
 def index():
     if request.method == 'POST':
         username = request.form['username']
@@ -31,11 +30,12 @@ def index():
         if database is None:
             return '<h1>Loading...</h1>'
 
-        cursor = database.cursor()
+        cursor = database.cursor(dictionary=True)
         cursor.execute(f"SELECT * FROM users WHERE username = '{username}' AND user_password = '{password}'")
         user = cursor.fetchone()
 
         if user:
+            session['user'] = user
             # If the user exists in the database, redirect to transactions page
             return redirect(url_for('transactions'))
         else:
@@ -46,13 +46,32 @@ def index():
 
 
 @app.route('/transactions')
-
 def transactions():
-    return render_template('transactions.html')
+    if 'user' not in session:
+        # User is not logged in, redirect to login page
+        return redirect(url_for('index'))
+    
+    user = session['user']
+
+    database = try_connect_db()
+    if database is None:
+        return '<h1>Loading...</h1>'
+    
+    cursor = database.cursor()
+    cursor.execute(f"SELECT * FROM transactions WHERE user_id = '{user['user_id']}'")
+    transactions = cursor.fetchall()
+
+    return render_template('transactions.html', transactions=transactions, full_name=user['full_name'])
+
+
+@app.route('/logout')
+def logout():
+    # Remove the user information from the session
+    session.pop('user', None)
+    return redirect(url_for('index'))
 
 
 @app.errorhandler(404)
-
 def page_not_found(e):
     return render_template('404.html'), 404
 

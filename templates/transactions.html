@@ -6,6 +6,27 @@
     </head>
 
     <body>
-        <h1>Welcome to Broke Bank!</h1>
+        <h1>Welcome, {{ full_name }}</h1>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <h3>Your Transactions:</h3>
+
+        <input type="text" placeholder="Search by reference number...">
+
+
+        <table>
+            <tr>
+              <th>Transaction Date</th>
+              <th>Deposited</th>
+              <th>Withdrawn</th>
+            </tr>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction[2] }}</td>
+                    <td>${{ transaction[3] }}</td>
+                    <td>${{ transaction[4] }}</td>
+                </tr>
+            {% endfor %}
+          </table>
     </body>
+
 </html>
