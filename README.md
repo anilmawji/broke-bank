@@ -20,6 +20,14 @@ source .venv/bin/activate # On macOS/Linux
 pip install -r requirements.txt
 ```
 
+3. Create .env file for environment variables
+```env
+FLASK_ENV=development
+FLASK_APP=main.py
+MYSQL_USER=username_here
+MYSQL_PASSWORD=password_here
+```
+
 3. Start server (local deployment)
 ```shell
 flask run
