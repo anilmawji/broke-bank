@@ -32,6 +32,7 @@ def index():
             return '<h1>Loading...</h1>'
 
         cursor = database.cursor(dictionary=True)
+        # Blind injection vulnerability (true or false)
         cursor.execute(f"SELECT * FROM users WHERE username = '{username}' AND user_password = '{password}'")
         user = cursor.fetchone()
 
@@ -64,7 +65,8 @@ def transactions():
         return '<h1>Loading...</h1>'
     
     cursor = database.cursor()
-    query = f"SELECT * FROM transactions WHERE user_id = '{user['user_id']}'"
+    # Select a specific number of columns to demonstrate a UNION injection
+    query = f"SELECT date(transaction_date), reference_number, deposited_amount, withdrawn_amount, account_name FROM transactions WHERE user_id = '{user['user_id']}'"
 
     # If a reference number was provided, modify the query to include a condition for the ref number
     if reference_number:

@@ -12,10 +12,9 @@
 
         <form method="post">
             <input type="text" name="reference_number" placeholder="Search by reference number...">
-            <br />
             <button type="submit">Search</button>
         </form>
-
+        <br />
         <table>
             <tr>
               <th>Transaction Date</th>
@@ -26,11 +25,11 @@
             </tr>
             {% for transaction in transactions %}
                 <tr>
-                    <td>{{ transaction[2] }}</td>
-                    <td>{{ '%04d' % transaction[0] }}</td>
+                    <td>{{ transaction[0] }}</td>
+                    <td>{{ '%04d' % transaction[1] }}</td>
+                    <td>${{ transaction[2] }}</td>
                     <td>${{ transaction[3] }}</td>
-                    <td>${{ transaction[4] }}</td>
-                    <td>${{ transaction[5] }}</td>
+                    <td>{{ transaction[4]|capitalize }}</td>
                 </tr>
             {% endfor %}
           </table>
