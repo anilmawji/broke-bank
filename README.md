@@ -36,7 +36,10 @@ MYSQL_USER=myusername
 MYSQL_PASSWORD=mypassword
 ```
 
-## 6. Start server (local deployment)
+## 6. Run bank-data.sql to create the database
+Make sure the MySQL server is running (MySQL80 service on Windows)
+
+## 7. Start server (local deployment)
 ```shell
 flask run
 ```
